@@ -1,6 +1,6 @@
 # AST4723-Public-Materials
 
-AST 4723 is the second-semester upper-level undergraduate course on astronomical observations.
+AST 4723 is the second-semester upper-level undergraduate course on astronomical observations at the University of Florida.
 
 We cover optical and radio spectroscopy and data analysis.
 
