@@ -21,3 +21,9 @@ Topics are generally presented in this order (partly from necessity to match ass
   8. [Radio 4: Observation Planning Tools for Map Making](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Radio%204%20-%20Observation%20Planning%20to%20Map%20Making.ipynb)
   9. [Modeling 2: Statistics, Gaussians, Lines](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Modeling%202%20-%20Statistics%2C%20Gaussians%2C%20and%20Lines.ipynb)
   10. [Modeling 3: Physical Inference](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Modeling%203%20-%20Physical%20Inference%20and%20Uncertainties.ipynb)
+  11. [Radio 5: Velocity frames and Galactic rotation](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Radio%205%20-%20Velocity%20and%20Galactic%20Rotation.ipynb)
+  12. [Fourier Transforms: Visual FTs, convolution](https://github.com/keflavich/AST4723-Public-Materials/blob/master/FourierTransforms.ipynb)
+  13. [Interferometry](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Interferometry.ipynb)
+
+
+There are other scattered materials that include 'leftover' notes and instrument-specific exercises.
