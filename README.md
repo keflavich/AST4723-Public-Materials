@@ -14,4 +14,7 @@ Topics are generally presented in this oreder:
      - [Tracing](https://learn.astropy.org/tutorials/1-SpectroscopicTraceTutorial.html)
      - [Wavelength Calibration](https://learn.astropy.org/tutorials/2-WavelengthCalibration.html)
      - [Extraction](https://learn.astropy.org/tutorials/3-Trace_Extract_Wavelength-CalibrateSpectrum.html)
-  4. ...in progress...
+  4. [Radio 1: Telescopes](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Radio%201%20-%20Radio%20Telescopes.ipynb)
+  5. [Radio 2: Radio Astronomy](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Radio%202%20-%20Radio%20Astronomy.ipynb)
+  6. [Radio 3: Antennae, noise, gain, calibration](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Radio%203%20-%20Radio%20astronomy%20-%20antennae%2C%20noise%2C%20gain%2C%20calibration.ipynb)
+  7. [Modeling 1: Model Fitting in Practice (Optical examples)](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Modeling%201%20-%20Model%20fitting%20in%20practice%20-%202022%20optical%20version.ipynb)
