@@ -20,3 +20,4 @@ Topics are generally presented in this order (partly from necessity to match ass
   7. [Modeling 1: Model Fitting in Practice (Optical examples)](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Modeling%201%20-%20Model%20fitting%20in%20practice%20-%202022%20optical%20version.ipynb)
   8. [Radio 4: Observation Planning Tools for Map Making](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Radio%204%20-%20Observation%20Planning%20to%20Map%20Making.ipynb)
   9. [Modeling 2: Statistics, Gaussians, Lines](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Modeling%202%20-%20Statistics%2C%20Gaussians%2C%20and%20Lines.ipynb)
+  10. [Modeling 3: Physical Inference](https://github.com/keflavich/AST4723-Public-Materials/blob/master/Lecture%20-%20Modeling%203%20-%20Physical%20Inference%20and%20Uncertainties.ipynb)
