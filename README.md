@@ -27,3 +27,12 @@ Topics are generally presented in this order (partly from necessity to match ass
 
 
 There are other scattered materials that include 'leftover' notes and instrument-specific exercises.
+
+
+# Labs
+
+There are two main labs in the course that get broken up into several parts.
+
+ * [Spectroscopy](labs/SpectroscopyLab.pdf) includes acquisition and reduction of "long-slit" (really, fiber-fed) optical spectra
+ * [Site Characterization](labs/SiteCharacterization.pdf) involves characterizing an observing site to figure out what can be observed.  This is setup for the radio astronomy lab
+ * [Radio Astronomy - HI](labs/RadioAstronomyLab.pdf) is the full Radio Astronomy lab, using a cheap telescope backed by an RTL-SDR (software-defined radio) to obtain HI spectra of the Galaxy and try to map out the Galactic rotation curve.
