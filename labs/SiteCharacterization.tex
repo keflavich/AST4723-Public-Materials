@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+%\usepackage{geometry}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false,pdflang=en-US,pdftitle=AST4723_SiteCharacterization_2022]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{AST4723} }
+%\chead{ \fancyplain{}{} }
+\rhead{ \fancyplain{}{\today} }
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+\def\todo#1{\textcolor{red}{#1}}
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+
+\begin{document}
+\title{Site Characterization lab: What can you see, and when?}
+\maketitle
+
+\section{Overview}
+
+Site characterization is an important part of modern astronomy.  Before we
+build a telescope, we need to know how it will perform!  Sites have many
+important characteristics: longitude and latitude, elevation, weather
+statistics, astronomy-specific weather statistics, accessibility,
+infrastructure, available area, cost, stability (earthquakes?), and even
+politics.
+
+In this lab, you will characterize two observing sites:
+\begin{enumerate}
+\item Your home (wherever you're living during this class)
+    [this must be completed \emph{before} you attempt the Radio Astronomy lab]
+\item The front of the Bryant Space Science Center
+    (this can be done when you're setting up for the Radio Astronomy lab)
+\end{enumerate}
+
+For an optical site characterization, you would usually use a tool called a 
+Differential Image Motion Monitor (DIMM) to measure the seeing (blurring
+by the atmosphere) from night-to-night.  In this lab, instead, you'll
+be characterizing the site for radio astronomy.
+
+Write up this lab as a detailed report.  Answer all of the questions
+and include pictures and figures to show needed details.
+No error analysis is needed, but you should include at least a brief
+introduction and conclusion.  In your conclusion, evaluate how good
+a site this is for radio astronomy.
+
+
+\section{Background: Your planned observatory}
+You are planning for a future lab in which you will use a radio
+telescope, which is about 1.5m tall and 1.5m wide, to observe the Galaxy.
+
+The telescope stands on a narrow tripod and needs to rest on flat ground.
+
+The site needs to have low foot-traffic and no vehicle traffic so you don't
+knock over the telescope.
+
+The telescope will be operated from a laptop with a 10 foot coaxial cable.  You
+need to allow for some slack, so you have to have space to set up a table and
+chair.  You also need to power the laptop, so you need access to an electrical
+outlet (infrastructure).
+
+\subsection{Describe the Site}
+
+Where will you do your observing?  Where can you put a telescope that is about 1.5m tall and 1.5m wide?
+You need a flat area with a clear view of the sky.
+
+Take a picture of the observing site: show that it is flat.
+
+\subsection{Describe the Sky}
+
+What part of the sky can you see from this area?
+
+If you have a lot of trees or buildings around, you may be limited in
+the areas on the sky you can observe!  Specify the visible area of the sky in terms of altitude and azimuth ranges.
+For example, you might say, ``I can see from 40 degrees up to 90 degrees in altitude if I look straight south, but
+I can only see from 80 to 90 degrees in altitude if I look north because the neighbor's roof blocks the way.''
+
+Using a sky-viewing app (google sky, etc), determine what is visible at the time you are doing the lab.
+Visible means: not obstructed by buildings or by trees.  If there are a few leaves in the way, it
+might be OK, but if there's a thick tree canopy above, it will not.
+Record the time and a list of celestial objects (constellations, interesting features in those constellations)
+that could be seen from the site.
+
+Remember that radio observations can be performed during the day.  However, you can't see through the sun,
+and for our telescopes, you need to be pointed $\gtrsim10\deg$ away from the sun to avoid contamination.
+
+You will also need to point at the sun for part of the assignment, so figure out when the sun is directly
+visible from your observing site.
+
+\subsubsection{RFI sources}
+Are there any other notable obstructions you might worry about?  For example, is there a cell tower
+or a radio broadcasting center that might muck up your observations with radio frequency interference (RFI)?
+Are there overhanging powerlines?  Remember that radio receivers can pick up signals from all around - 
+if there are broadcasting devices (like car radios and cell phones), they can produce interference.
+Note what possible sources are nearby.
+
+
+\subsubsection{Describe the sky \emph{at other times}}
+Using your observation planning tools, determine what else is observable from the site.
+If you picked a really clear site, the answer might be `nearly everything' - but it's definitely not \emph{everything},
+so summarize concisely what \emph{is} visible.
+
+\emph{Also} answer these specific questions:
+\begin{itemize}
+    \item At what times does the Galactic Plane pass overhead?  
+    \item What part of the Galactic Plane (what Galactic Longitude) passes over
+        at those times?
+\end{itemize}
+
+
+\section{Rubric}
+This assignment will be graded on the following criteria:
+\begin{itemize}
+    \item Did you turn in a complete writeup?
+    \item Did you include photographs of the site and surroundings?
+    \item Did you determine what is observable from the site?
+    \item Did you address sources of interference?
+    \item Did you address the infrastructure needs?
+\end{itemize}
+
+\end{document}

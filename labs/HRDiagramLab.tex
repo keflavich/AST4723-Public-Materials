@@ -1,0 +1,241 @@
+\documentclass[11pt]{article}
+%\usepackage{geometry}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{indentfirst}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false,pdflang=en-US,pdftitle=]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{AST4723} }
+%\chead{ \fancyplain{}{} }
+\rhead{ \fancyplain{}{\today} }
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+\def\todo#1{\textcolor{red}{#1}}
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+\begin{document}
+
+\title{HR Diagram Final Project}
+% not used in 2022
+
+\section{Goals}
+In this project, you will try to measure the age of the cluster, the distance
+to the cluster, and determine the spectral type of the most massive star you
+observed.
+
+\section{Background}
+In the photometry lab, you reduced several images by:
+\begin{itemize}
+    \item dark-subtracting
+    \item flat-fielding
+    \item aligning and stacking
+    \item cataloging the stars
+    \item cross-matching the catalogs
+    \item calculating errors
+\end{itemize}
+
+You will now make physical measurements from these data.
+
+
+\section{Calibration}
+
+Determining the age requires using color-magnitude diagrams, which you have already made.
+However, the CMDs you created were not calibrated.  You need to calibrate the data!
+Also, your catalogs from the assignment may not have been complete - re-tune the DAOPhot
+parameters until you're able to extract all of the stars you can see by eye.
+\textbf{HINT:} What is the FWHM of a star in the image?  What FWHM did you use in the assignment?
+
+
+To calibrate the data, you must identify a non-variable star with well-measured flux
+in a given band.  You must calibrate \emph{each} band, and you might want to select
+different stars in each band!
+
+\subsection{Identification / Finder Charts}
+For each of these stars, you need to identify them: figure out exactly what their
+RA/Dec coordinates are and/or determine their names.  You do this by comparing to
+a finder chart.  Finder chart making is described in the first Observation Planning
+lecture from AST 3722 (\url{https://ufl.instructure.com/courses/404100/pages/ast3722-resources}).
+
+Once you've identified the star, look up its magnitude measurements
+in the observed bands (UBVRI, H$\alpha$, S II $\lambda\lambda6716,6731$, O III 5007).
+It is likely that there will be no narrow-band measurements available, though - save those for last,
+as we can take another approach for them.
+You can look up photometric magnitudes of stars with Vizier or SIMBAD.  If you get magnitudes from
+SIMBAD, be sure to reference the original source!
+
+
+Use a published catalog magnitude to calibrate your DAOPhot catalog.
+The calibration factor is simply the magnitude you measured in the catalog $m_{measured}$ 
+minus the published magnitude $m_{published}$, i.e., $m_{calfactor} = m_{measured} - m_{published}$.
+You then subtract this calibration factor from the rest of the sources in the catalog.
+What uncertainty does this add to your measurements?
+
+\textbf{Check your calibration.}  Once you've applied the calibration to your catalog, you can check
+that other stars have correct magnitudes according to the published catalog.  If you see a systematic difference,
+i.e., multiple stars have wrong magnitude, your calibration factor may be incorrect!
+What could cause this?  If you identify this problem, correct it!
+
+\section{Calibrated Color-Magnitude and Color-Color Diagrams}
+
+Once you have calibrated your data, make color-color and color-magnitude diagrams.
+Of course, to do this, you need cross-matched catalogs - i.e., you need to have photometry in multiple bands
+for each star.
+
+\emph{Bonus points} for including appropriate statistical errors on the photometric data points and in the plots.
+This is assigned as \emph{bonus} because we've never worked an example completely.  You have the appropriate
+tools in hand: you have the error image, you know how to propagate errors, but you don't necessarily know
+how the fluxes (and magnitudes) in the \texttt{DAOPhot} catalog were derived.
+To figure that out, you have to read up on the algorithm here: \url{https://ui.adsabs.harvard.edu/abs/1987PASP...99..191S/abstract},
+which is a bit thick.  In brief, \texttt{DAOPhot} convolves the image with a modified version of a Gaussian kernel in which the `wings'
+are negative, then reports the local peak of the convolved image as the flux.  The error on this estimate is nontrivial.
+A more reasonable approach might be to do formal aperture
+(\url{https://photutils.readthedocs.io/en/stable/getting_started.html}) or PSF
+photometry and use those measurements to obtain error estimates.
+These approaches are well-described in \url{https://photutils.readthedocs.io/en/stable/aperture.html#error-estimation},
+and less well-described (but still available) in \url{https://photutils.readthedocs.io/en/stable/psf.html}.
+Aperture photometry is basically adding up pixels, so it's conceptually simple.  PSF photometry is fitting models to the data,
+so we end up using the covariance matrix from the fit for the uncertainty.
+
+
+\section{Measurements: Isochrone Matching}
+
+The key aims, once you have calibrated CMDs and CCDs, are:
+\begin{enumerate}
+    \item Determine the distance to the cluster
+    \item Determine the age of the cluster
+    \item Determine the spectral type of the most massive star in the cluster
+\end{enumerate}
+
+Both items 1 and 2 above come from comparing the cluster CMD to a variety of isochrones.
+You will need to obtain isochrones from \url{http://stev.oapd.inaf.it/cgi-bin/cmd}.
+This page has a lot of options, but do not be intimidated!  You only need to modify the
+\textbf{ages} (you want each of your isochrones to have only one age) and, maybe,
+the \textbf{interstellar extinction}.  You can leave the rest untouched!
+You may need to experiment with a range of different ages and extinction values;
+use information from your astrophysics classes to figure out what ages might
+be relevant to an open cluster.  I recommend varying ages, but keeping extinction
+fixed, until you've come up with a reasonable age estimate.
+
+Compare the isochrones to your observed CMD by overplotting them.
+Use the vertical offset to determine the \emph{distance modulus} to the cluster.
+Make sure your distance is reasonable!  This is a star cluster, so it's within our galaxy,
+and it's more distant than the closest stars.
+
+Once you have found a reasonable estimate for the distance, try to fine-tune your selection
+of age and extinction.  Plot the theoretical isochrones with magnitudes correct for distance
+using your inferred distance modulus.  Note that if you change the extinction value, the distance you infer will
+also change.  In the Milky Way, extinction is usually $\approx A_V=2$ magnitudes per kiloparsec,
+so be wary if you get an answer that is too far different from that (for example, if you found
+$A_V=5$ and a distance of 1 pc, that would be a red flag that something is wrong!).
+
+When trying to estimate the extinction, it may be helpful to use the color-color diagrams.
+Exinction changes the colors of stars more subtly than it changes their total light, so you
+may be able to determine the extinction just by looking at the position of the isochrone
+vs the position of your data in the color-color diagram.
+
+Determine the best-fit age.  Compare to isochrones from similar-age clusters.  By how much
+do you have to change the age before you can tell it doesn't fit?  Report this as your age uncertainty.
+
+Similarly, compare different distance modulus estimates to determine the uncertainty on your distance
+modulus.  How accurately can you determine the distance to the cluster?  Report this as your distance uncertainty.
+
+Finally, do the same for extinction estimates.
+
+When you're deriving the values above, you will probably need to make many different plots.
+However, what you turn in should be a set of color-magnitude and/or color-color diagrams
+with your best-fit isochrone overlaid, along with the closest two isochrones
+with lower/higher age/extinction/distance that you can distinguish.
+
+
+Note that these estimates are not formal propagation-of-error derived estimates!  It is possible to achieve
+those, but it requires modeling the cluster isochrone more directly.
+
+
+Finally, report the spectral type (e.g., B6V, O2III) of the most massive star in the cluster, or report its mass.
+You should be able to determine this approximately by comparing to the isochrones.
+This is an important sanity check!  If you found an O3 star in a cluster that is 5 billion years old, you would say
+something is probably wrong - O-stars die in only a few million years!
+Report the uncertainty on the spectral type determined any way you like, just explain it.
+Color-color diagrams and narrow-band filters may be particularly helpful for this measurement.
+
+\section{What are you turning in?}
+
+Write this up as a formal writeup with introduction, methods, results/analysis, and conclusion.
+Include a table showing all of the catalogued measurements.  If you can't fit
+everything onto one page, show a sample table in the writeup and turn in a
+complete digital table in a machine-readable format.
+
+You will be graded on:
+\begin{itemize}
+    \item References - did you describe where you got your finder chart and catalog measurements?
+    \item Format - did you include relevant sections?  Did you produce a table (see below)?
+    \item Methods - did you clearly report your methods in a way that can be easily reproduced?
+        Did you document each step appropriately?
+    \item Errors - Did you report appropriate statistical errors on your measurements?
+        Did you address possible non-statistical sources of error?
+    \item Age, distance, extinction - Did you report measurements of the age, distance, and extinction
+        toward the cluster?
+    \item Plots - did you show appropriate plots?  Did you label them adequately?
+    \item Tables - did you include a photometry table?  Did it include all of the bands?
+    \item Upper Limits and Completeness - Discuss what the faintest star is that you detected in each
+        band.  What band was the most sensitive?  Bonus if you formally estimate the completeness, but
+        we likely will not discuss this in class.
+    \item Meeting general scientific and laboratory norms - Were items that needed labeling labeled?
+        Were appropriate significant figures used? etc
+\end{itemize}
+
+
+
+\end{document}
+% resource: https://www.youtube.com/watch?v=_eMNRa-KEiQ

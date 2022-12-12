@@ -1,0 +1,166 @@
+\documentclass[11pt]{article}
+%\usepackage{geometry}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{indentfirst}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false,pdflang=en-US,pdftitle=]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{AST4723} }
+%\chead{ \fancyplain{}{} }
+\rhead{ \fancyplain{}{\today} }
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+\def\todo#1{\textcolor{red}{#1}}
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+\begin{document}
+
+\title{Galactic Rotation}
+2020 version; not used in 2022
+
+\section{Goal: Measure the Galactic Rotation Curve}
+In the Radio Astronomy lab, we took a bunch of observations of the Galaxy, fitted spectral lines, and tried to estimate masses.  But we came up with masses that were... not quite right.
+This is because most, or all, of what we saw was \emph{local} HI - atomic hydrogen that is really close to the sun, and therefore doesn't move much with respect to the sun.  It can't be used
+to trace Galactic rotation.
+
+However, we did detect some gas that \emph{does} follow the Galactic rotation curve.
+
+\section{Overview}
+In this project, you will try to detect that gas and measure the rotation curve correctly!
+
+You will use all of the data the class obtained in the Radio Astronomy lab.
+These will be distributed with an associated README file.
+
+Your tasks are to:
+
+\begin{enumerate}
+    \item Map out the locations that were observed on a map of the Galaxy.  Use
+        this map to determine which observations might be useful for assessing
+        Galactic rotation.
+    \item Identify any observations that have bad metadata - were some observed
+        at the wrong time?  Do some have mis-reported alt/az?  Determine from
+        the READMEs whether they can be corrected - correct those that can be,
+        remove the rest.
+    \item Identify at least six spectra obtained along different parts of the
+        Galactic rotation curve.  Be sure to write up how you picked these -
+        how did you decide that these spectra are on different parts of the
+        Galactic rotation curve?  Use these for further analysis.
+    \item Check for redundant spectra (spectra taken of the same location) from
+        different observers.  Note if they are consistent.  If they are not consistent,
+        go back and see if perhaps one has a mis-reported alt/az or some other error.
+    \item Measure the \emph{local} velocity (the brightest peak) and all
+        detectable sub-peaks in the spectra.
+        This is probably the hard part of the project.
+    \item Plot the fitted velocities versus their Galactic radii assuming the
+        highest velocity along each line of sight comes from the Galactic
+        tangent point.
+\end{enumerate}
+
+\section{Details}
+Most of the work above is something you've done or been shown in previous lectures.
+
+You will need Lectures 7 and 8 for the first three items above.
+\url{https://ufl.instructure.com/courses/404100/files/52976106/download?wrap=1} and \url{https://ufl.instructure.com/courses/404100/files/53223060/download?wrap=1}
+
+To measure the velocity, you will be performing multi-component velocity
+fitting.  Note that you may need to use the high-frequency or low-frequency
+part of the frequency-switched spectrum to measure the right component,
+otherwise the `negative' spectrum might mess with the measurement.  Recall that
+the frequency throw is 100 km/s in the frequency-switched measurements: that
+means if there is a detectable signal sitting at -100 km/s (higher frequency =
+blueshifted), the second observation will overlap with the first!
+
+\subsection{Fitting}
+The fitting approach you take is up to you, but the simplest is likely a
+`peeling' approach, in which you first get the best fit you can to the main
+peak, subtract that off, then try to fit the next-biggest peak in the leftovers
+(the residual).
+
+This is tricky!  You must make sure not to create artificial spectral features
+by subtracting an incorrect model!
+
+\subsection{Velocities}
+You will convert your fitted spectral peak values into line-of-sight
+velocities.  This will require correcting from topocentric (TOPO) velocity
+to LSRK velocity as in the \texttt{Velocity and Galactic Rotation Exercise} notebook.
+
+
+\section{What are you turning in?}
+
+Write this up as a formal writeup with introduction, methods, results/analysis, and conclusion.
+Include a table showing all of the velocity meausurements in both rest-frame and LSRK coordinates
+along with measurement errors.
+
+You will be graded on:
+\begin{itemize}
+    \item Data Selection - Did you plot up the collected data appropriately?  Did you show
+        where the spectra were obtained, and determine which were usable to measure a rotation curve?
+        Did you identify and reject bad data?
+    \item Methods - did you clearly report your fitting approach?  Did you show the
+        spectra with best-fit models overlaid?  Did you adjust from TOPO to LSR?
+        Did you determine the Galactocentric radius appropriate for your measurements?
+    \item Errors - Did you report appropriate statistical errors on your measurements?
+        Did you address possible non-statistical sources of error?
+    \item Plots - did you show appropriate plots?  Did you label them adequately?
+    \item Tables - did you include a photometry table?  Did it include all of the bands?
+    \item Format - did you include relevant sections? 
+    \item References - Did you reference any works?   If so, did you cite them?
+    \item Meeting general scientific and laboratory norms - Were items that needed labeling labeled?
+        Were appropriate significant figures used? etc
+\end{itemize}
+
+
+
+\end{document}
+% resource: https://www.youtube.com/watch?v=_eMNRa-KEiQ

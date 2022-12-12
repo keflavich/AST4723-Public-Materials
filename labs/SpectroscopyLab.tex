@@ -1,0 +1,253 @@
+\documentclass[11pt]{article}
+%\usepackage{geometry}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{indentfirst}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false,pdflang=en-US,pdftitle=AST4723_2022_Spectroscopy]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{AST4723} }
+%\chead{ \fancyplain{}{} }
+\rhead{ \fancyplain{}{\today} }
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+\def\todo#1{\textcolor{red}{#1}}
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+\begin{document}
+
+\title{Spectroscopy Lab: Introduction to `long-slit' spectroscopy}
+In this lab, you will practice using a spectrograph and reducing `long-slit'
+spectroscopy data.
+We are actually using a fiber-fed spectrograph instead of a long-slit spectrograph,
+so we have created a `pseudo-slit' by laying out the fibers in a linear pattern.
+
+Your learning goals for this lab are:
+
+\begin{itemize}
+    \item to obtain spectra of astronomical sources
+    \item to calibrate and reduce spectroscopic data
+    \item to measure spectral lines
+\end{itemize}
+
+The lab includes observation, data analysis, and data reduction.
+
+
+% There will be no formal writeup for this lab.  You will reduce the data and answer questions about it.
+
+%Download the data from \url{https://ufl.instructure.com/files/54125722/download?download_frd=1}
+
+\section{Observations}
+
+We observed the following targets:
+
+\begin{itemize}
+    \item Jupiter
+    \item A moon of Jupiter
+    \item The Ring Nebula
+    \item Vega
+    \item At least one binary star system
+\end{itemize}
+
+We also observed calibration lamps.  The Neon lamp spectrum should serve as the basis of your calibration.
+
+\section{Reduction}
+\textbf{Recommendation: Do the full process described here (reduction, trace
+and extract, wavelength calibrate) for \emph{one} star (of your choice) before
+doing any of the other stars.}
+Reduce the data by dark-subtracting them.
+
+Dark-subtract each of the different exposure types by matching the exposure times listed in the file names and confirmed in the FITS headers.
+
+Median-combine the images of the same source to reject cosmic rays.  However, if there is offset between the images that would result in losing signal, do not combine them.
+\begin{itemize}
+    \item \textbf{Only median-combine images if they are already aligned.}
+    \item \textbf{Do not attempt to median-combine images at different flux levels.}
+    \item \textbf{If you can't median-combine in the image, you can median-combine the normalized spectra instead.}
+    \item \textbf{Not all of the spectra are ``good".  If an exposure has weird artifacts, note that and exclude it from further analysis (your note should include an image showing what the problem is)}
+\end{itemize}
+
+For the spectroscopic reduction, follow the process described in the
+Spectroscopy lectures and on the astropy guides:
+
+\begin{itemize}
+    \item \url{https://learn.astropy.org/tutorials/1-SpectroscopicTraceTutorial.html}
+    \item \url{https://learn.astropy.org/tutorials/2-WavelengthCalibration.html}
+    \item \url{https://learn.astropy.org/tutorials/3-Trace_Extract_Wavelength-CalibrateSpectrum.html}
+\end{itemize}
+
+A modified version of the tracing guide was given in class to account for our
+slightly more poorly-behaved spectra.
+
+Your aim is to produce wavelength-calibrated one-dimensional spectra for each of the targets.
+
+
+
+\section{Trace and Extract}
+Trace and extract spectra from each of the targets that has a continuous spectrum.
+Use either the combined (median combined) spectrum or the brightest spectrum.
+
+Use the traces from each of these targets to obtain the corresponding extracted spectrum from your combined flat field image (if the sky image is usable as a flat - you'll need to assess this).
+\begin{itemize}
+    \item \textbf{This process is shown in the Wavelength Calibration notebook.  In brief: obtain the trace and trace profile of the star,
+         which give you the (x,y) locations to pull the spectrum from, then use that to extract the spectrum just like we did for the mercury,
+         neon, and krypton lamps.}
+\end{itemize}
+
+Use a trace from one of the stars (probably the brightest) to extract a spectrum from Jupiter.
+\begin{itemize}
+    \item \textbf{Our extended images consist of 7 distinct spectra, just like the
+        calibration lamps, because this is a fiber-fed spectrograph with 7
+        independent fibers. There are other ways you can get the individual
+        spectra, but the simplest is just to use the trace of a single assuming
+        that the star's spectrum has the same curvature as the extended source's seven
+        spectra.}
+\end{itemize}
+
+Use the traces from each of these targets to obtain the corresponding extracted
+spectrum from the wavelength calibration spectra (He, Ne).
+Assess whether the wavelength solutions will be different for each extracted
+spectrum: do the lines appear at different pixel positions?
+
+\begin{itemize}
+    \item \textbf{Note that there are calibration lamp spectra from the beginning and end of the night.
+        For each spectrum you're extracting, check how much the calibration
+        lamp spectra differed from the beginning to the end of the night: how
+        much did the wavelength solution change?  What does that imply for your
+        uncertainty on the wavelength solution?}
+\end{itemize}
+
+\section{Wavelength Calibrate}
+
+Wavelength calibrate your spectra.
+
+Show your work!
+
+Estimate the uncertainty in your wavelength solution.
+\begin{itemize}
+    \item \textbf{Uncertainty estimation should follow the wavelength-calibration notebook,
+        but you do not need to prove that the uncertainty is dominated by systematic errors, you
+        can just estimate the standard deviation of the fit residuals.}
+    \item \textbf{I hope you can just repeat exactly what I did in the notebook without extensive
+        fine-tuning of parameters.  If you find yourself getting lost, spending a lot of time here,
+        ask for help and/or move on!  At least do the neon-based wavelength solution identification,
+        since you need that for the next step, though.}
+\end{itemize}
+
+
+
+
+
+\section{Fit and identify spectral lines}
+
+Once you have your wavelength-calibrated spectra, you will use Vega as a spectral flat field as decribed
+in the ``Line Profile Measurement'' lecture.  As part of that process, you will fit line profiles to the
+hydrogen lines in Vega's spectrum.
+
+Fit the H$\beta$ 4861 angstrom line from any star in which it is detected.
+Report the velocity of the line and the equivalent width.
+\begin{itemize}
+    \item \textbf{You need to select the part of the spectrum that contains this line and \emph{normalize} it,
+        most likely by fitting the continuum with a linear model.}
+    \item \textbf{You should fit a Gaussian absorption line and use its integral to get the EQW.}
+    \item \textbf{You can fit these two together, following the example in the `measuring line properties' notebook.}
+\end{itemize}
+
+
+
+In Jupiter's spectrum, which is the reflected solar spectrum, identify and fit (and measure EQWs of) as many Fraunhofer lines
+(\url{https://en.wikipedia.org/wiki/Fraunhofer_lines}) as you can.
+Make a table of the measured wavelength, width, EQW, and uncertainty on
+those fitted quantities.
+
+In the twilight spectrum, you may also see these lines.  Are they at the same wavelength?  Are they the same relative depth?
+
+Compare to your other stellar spectra.  Which lines are detected in other stars?  Are there lines detected in other stars not seen in the Sun's spectrum?
+Again, report this in a table.
+
+You should have one table for each target (each star, Jupiter and its moon(s), and the nebula).
+
+\section{Measurements}
+
+Your measurements should include:
+
+\begin{itemize}
+    \item The measured wavelength coverage, and pixel spacing, from your wavelength calibration solutions.
+        (especially note: if you took multiple calibration spectra, did the wavelength solution change?)
+    \item The Equivalent Width of the hydrogen lines in Vega's spectrum
+    \item The wavelength of any emission lines in the Ring Nebula's spectrum
+    \item The wavelength, and identity, of spectral lines in other targets (you may be limited to Hydrogen lines, but there should be some Fraunhofer lines identifiable too)
+    \item The pixel scale of the slit viewer on the acquisition and guiding system (you will get this from the observations of the binary system)
+\end{itemize}
+
+
+\section{Turn In:}
+\begin{itemize}
+    \item Your formal writeup
+    \item Your complete work notebook in .ipynb and .pdf form
+    \item Plots of each of the wavelength-calibrated spectra
+    \item Tables of measurements
+\end{itemize}
+
+
+The writeup rubric is:
+\begin{enumerate}
+    \item Introduction (5\%): Describe the purpose of the lab \& background
+    \item Procedure (55\%): Describe the setup of the hardware and the data taking and reduction process
+    \item Data Analysis (25\%):  Report and analyze your measurements
+    \item Data Packaging and Delivery (10\%): Put the data together and turn them in with appropriate metadata
+    \item Conclusions (5\%): Summarize what you learned
+\end{enumerate}
+
+\end{document}
+% resource: https://www.youtube.com/watch?v=_eMNRa-KEiQ
