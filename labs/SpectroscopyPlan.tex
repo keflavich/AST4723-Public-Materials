@@ -1,4 +1,6 @@
 \documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
 %\usepackage{geometry}
 \usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \pagestyle{empty}
@@ -10,7 +12,7 @@
 \definecolor{darkred}{rgb}{.7,0,0}
 \definecolor{darkgreen}{rgb}{0,.6,0}
 \definecolor{red}{rgb}{.98,0,0}
-\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false,pdflang=en-US,pdftitle=AST4723_2022_Spectroscopy]{hyperref}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false,pdflang=en-US,pdftitle=AST4723_2024_SpectroscopyPlan]{hyperref}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 \pagestyle{fancyplain}
@@ -67,6 +69,7 @@ morekeywords={__global__, __device__},  % CUDA specific keywords
 \begin{document}
 
 \title{Spectroscopy Observing Plan}
+\maketitle
 
 
 \section{Assignment}
@@ -87,27 +90,27 @@ You will observe:
 \end{itemize}
  
 
-Your plan will include:
+Your plan will include the following for each source:
 
 \begin{itemize}
-    \item [5 pts] Magnitude estimates in the blue, visual, and red
-        filters\footnote{There are many different filter sets that include BVR
+    \item {[5 pts]} Magnitude estimates in the blue, visual, and red
+        filters.  (There are many different filter sets that include BVR
         filters, including Johnson, Cousins, Bessel, Strömgren.  Any are
-        acceptable for this estimate.}
-    \item [10 pts] Optical finder charts with a field of view of 15'.
+        acceptable for this estimate.)
+    \item {[10 pts]} Optical finder charts with a field of view of 15'.
         For the print version, use a white background with black stars.
-         Remember this can be quite tricky for our selection of bright
-        sources; if the DSS doesn't have a good image, we will need to search
-        for alternatives;
+         Finding an appropriate (unsaturated) finder chart can be quite tricky
+         for our selection of bright sources; if the DSS doesn't have a good
+         image, we will need to search for alternatives;
         \url{https://nova.astrometry.net/user_images/location}  may be a good option
         \emph{You need this finder chart accessible in both digital and print form:
         you will be using this document during your observing, so the quality of the 
         print will matter.}
-    \item [5 pts] Contingency plans for observations in September, October, or
+    \item {[5 pts]} Contingency plans for observations in September, October, or
         November.  (Plan for September, but say what changes if you observe in
         late November instead).  Plan to observe from sunset to ~3.5 hours
         after sunset.
-    \item [5 pts] A planned list of exposures and \emph{when} you will take them.
+    \item {[5 pts]} A planned list of exposures and \emph{when} you will take them.
         These should be precise to the minute.  What CCD/CMOS images do you
         need?
 \end{itemize}
@@ -137,7 +140,7 @@ Binary star lists:
 \section{Turn In:}
 \begin{itemize}
     \item Your observing plan
-    \item Your complete work notebook in .ipynb and .pdf form (assuming you used a notebook; you can complete the above without)
+    \item Your complete work notebook in .ipynb (if you used jupyter) and .pdf form 
 \end{itemize}
 
 
