@@ -1,0 +1,145 @@
+\documentclass[11pt]{article}
+%\usepackage{geometry}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{indentfirst}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false,pdflang=en-US,pdftitle=AST4723_2022_Spectroscopy]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{AST4723} }
+%\chead{ \fancyplain{}{} }
+\rhead{ \fancyplain{}{\today} }
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+\def\todo#1{\textcolor{red}{#1}}
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+\begin{document}
+
+\title{Spectroscopy Observing Plan}
+
+
+\section{Assignment}
+Plan a spectroscopic observing run.  
+
+ 
+
+You will observe:
+
+\begin{itemize}
+ \item A binary system with separation between 15" and 60" consisting of two medium-bright stars ($m_v < 10$)
+ \item A bright ($m_v < 6$) A-star
+ \item A bright ($m_v < 6$) M-star
+ \item A spectrophotometric standard star with $m_v < 12$
+ \item A bright nebula
+ \item A dense star cluster
+ \item A planet (and its moons if possible)
+\end{itemize}
+ 
+
+Your plan will include:
+
+\begin{itemize}
+    \item [5 pts] Magnitude estimates in the blue, visual, and red
+        filters\footnote{There are many different filter sets that include BVR
+        filters, including Johnson, Cousins, Bessel, Strömgren.  Any are
+        acceptable for this estimate.}
+    \item [10 pts] Optical finder charts with a field of view of 15'.
+        For the print version, use a white background with black stars.
+         Remember this can be quite tricky for our selection of bright
+        sources; if the DSS doesn't have a good image, we will need to search
+        for alternatives;
+        \url{https://nova.astrometry.net/user_images/location}  may be a good option
+        \emph{You need this finder chart accessible in both digital and print form:
+        you will be using this document during your observing, so the quality of the 
+        print will matter.}
+    \item [5 pts] Contingency plans for observations in September, October, or
+        November.  (Plan for September, but say what changes if you observe in
+        late November instead).  Plan to observe from sunset to ~3.5 hours
+        after sunset.
+    \item [5 pts] A planned list of exposures and \emph{when} you will take them.
+        These should be precise to the minute.  What CCD/CMOS images do you
+        need?
+\end{itemize}
+ 
+
+ 
+
+\section{Reference Materials}
+Spectrophotometric standard star lists
+
+\begin{itemize}
+    \item \url{https://www.eso.org/sci/observing/tools/standards/spectra.html}
+    \item \url{https://www.eso.org/sci/observing/tools/standards/spectra/wdstandards.html}
+    \item \url{http://mingus.mmto.arizona.edu/~bjw/mmt/spectro_standards.html}
+    \item \url{https://www.naoj.org/Observing/Instruments/FOCAS/Detail/UsersGuide/Observing/StandardStar/Spec/SpecStandard.html}
+    \item \url{https://noirlab.edu/science/observing-noirlab/observing-ctio/Spectrophotometric-Standards}
+\end{itemize}
+ 
+
+Binary star lists:
+
+\begin{itemize}
+    \item \url{https://www.astroleague.org/files/u220/DS-MasterObjectList2021.pdf}
+    \item \url{http://www.ianridpath.com/binaries.html}
+\end{itemize}
+
+\section{Turn In:}
+\begin{itemize}
+    \item Your observing plan
+    \item Your complete work notebook in .ipynb and .pdf form (assuming you used a notebook; you can complete the above without)
+\end{itemize}
+
+
+\end{document}
+% resource: https://www.youtube.com/watch?v=_eMNRa-KEiQ
