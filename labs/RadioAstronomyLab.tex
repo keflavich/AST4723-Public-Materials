@@ -463,6 +463,15 @@ position starting \emph{at least} 1 hour before the sun passes through the
 target position and keep recording for \emph{at least} 1 hour after.
 
 
+Alternatively, you may take three measurements consecutively by pointing away
+from the sun, at the sun, then away from the sun in one observing session.  If
+you do this, make sure you carefully point at the sun during the on-sun
+pointing.  It may be a good idea to continuously integrate (i.e., constantly
+take observations) while you are pointing toward and away from the sun, and
+simply note the timestamps (filenames) of the data from when you successfully
+took data vs those where you did not.
+
+
 \subsection{Data Packaging and Delivery}
 Once you've acquired data for all of your targets and the corresponding calibration data, you're done observing.
 
@@ -577,6 +586,7 @@ Finally, if the LNA light is on, but you get errors related
 to the bias tee, try setting \verb|skip_bias_tee=True|.  However,
 you should turn off this feature afterward - you need to turn
 on the bias tee to have the LNA on!
+
 
 \subsection{No FITS files are appearing when I run record integration}
 
