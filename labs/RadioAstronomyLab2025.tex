@@ -610,6 +610,41 @@ it means the computer was unable to recognize the SDR.
 \end{itemize}
 
 
+\section{Appendix: Reading and Plotting}
+
+You should be able to read the data using the \verb|astropy.table| package.
+
+\begin{verbatim}
+    from astropy.table import Table
+    tbl = Table.read('filename_goes_here.fits')
+\end{verbatim}
+
+You can plot the data using \verb|matplotlib.pyplot|.
+
+\begin{verbatim}
+    import matplotlib.pyplot as plt
+    plt.plot(tbl['frequency'], tbl['power'])
+    plt.show()
+\end{verbatim}
+
+There are also tools built in to the \verb|run_sdrplay_integration| script to plot the data:
+
+\begin{verbatim}
+    plot_table('filename_goes_here.fits')
+\end{verbatim}
+
+If you take many spectra in a row, e.g., for a drift scan, you can make waterfall plots.
+These are plots with frequency on the x-axis and time on the y-axis with every pixel filled and colored by the brightness of the spectrum.
+
+The raw data files, \verb|*.rx|, are numpy arrays that can also be plotted if \verb|cleanup=False| is passed to \verb|run_sdrplay_integration|.
+You don't generally want that, because these files can be huge.
+However, if you want to look at one example, which can be useful to look for radio frequency interference (RFI), you can make a waterfall plot of these data too:
+
+\begin{verbatim}
+    waterfall_plot('filename_goes_here.rx')
+\end{verbatim}
+
+
 
 
 \end{document}
