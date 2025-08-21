@@ -168,6 +168,11 @@ You will need to do the observational part of the lab on campus at Bryant Space 
 the Campus Teaching Observatory (outside).
 
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{RadioLabPhotos/LaptopAndSDRplay.png}
+    \caption{The laptop and SDRPlay.}
+\end{figure}
 
 \clearpage
 \subsubsection{Materials list}
@@ -608,6 +613,27 @@ it means the computer was unable to recognize the SDR.
     \item Make sure no other software is using the SDR (e.g., SDRConnect)
     \item Unplug and replug it
 \end{itemize}
+
+You can verify that the SDR can be found by running this command:
+
+\begin{verbatim}
+    import SoapySDR
+    print(dict(SoapySDR.Device.enumerate()[0]))
+\end{verbatim}
+
+which should print
+\begin{verbatim}
+    {'driver': 'sdrplay',
+     'label': SDRplay Dev0 RSPdx-R2 .......',
+     'serial': '........'}
+\end{verbatim}
+
+You can also run the command-line commands:
+\begin{verbatim}
+    SoapySDRUtil --find
+    SoapySDRUtil --probe="driver=sdrplay"
+\end{verbatim}
+
 
 
 \section{Appendix: Reading and Plotting}
