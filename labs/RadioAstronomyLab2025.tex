@@ -319,7 +319,8 @@ see Section \ref{sec:troubleshooting} below.
 \label{sec:freqcal}
 Now, attach the dipole antenna to the SDR.
 Make sure the LNA is not in the signal path, i.e., not plugged in!  (the LNA includes filters that will block the NOAA signals we're going to use)
-Use the \verb|run_sdrplay_integration| command to take a frequency calibration measurement.
+Use the \verb|calibrate_on_noaa| command to take a frequency calibration measurement.
+The first time you run this, set \verb|plot=True| to see a spectrum plotted.
 Record the ``Measured Frequency Offset'' it reports.
 Repeat this measurement 10 times.
 Record each value, then report the mean and standard deviation.
