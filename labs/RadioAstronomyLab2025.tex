@@ -188,7 +188,7 @@ the Campus Teaching Observatory (outside).
     \item Observing laptop
     \item Power cord for laptop
     \item USB extension cord
-    \item [optional] Battery pack
+    \item \[optional\] Battery pack
 \end{itemize}
 \begin{figure}[h]
     \centering
@@ -213,26 +213,29 @@ directory.
 
 Go to the github link listed in the lab
 (\url{https://github.com/keflavich/RTL_SDR_HI_Observations}). Download and
-extract the files from there onto your machine. You will want to copy the file
-\verb|run_sdrplay_integration.py|  to the
+extract the files from there onto your machine. You will want to copy the file\\
+\verb|run_sdrplay_integration.py|  \\
+to the
 folder you created in step 1.
 
 In the python session, run the command: \\
-\verb|import SoapySDR|
+\verb|import SoapySDR|\\
 If this works, there will be no message.  If you get an error message, there is
 a problem with your python installation; report it to the instructor.
 
 
-Because that python file is now in the same folder as your working
-environment or notebook, you can do the following to access the functions:
-\begin{verbatim}
-   >>> from run_sdrplay_integration import run_sdrplay_integration
-   >>> run_sdrplay_integration(...)
-\end{verbatim}
-(you will need to replace the \verb|...| with appropriate arguments)
+Connect the hardware.
+See Figure \ref{fig:radiolab_equipment_2025} for a visual checklist.
+The USB-B cord should be plugged into the computer and the SDR.
+The coax cable should be connected from the SDR Antenna B to the LNA and/or to the antenna (depending on the step below).
 
-To get more information about the functions you can type in the terminal:
-   \verb|>>> run_sdrplay_integration?|
+% Because that python file is now in the same folder as your working
+% environment or notebook, you can do the following to access the functions:
+% \begin{verbatim}
+%    >>> from run_sdrplay_integration import run_sdrplay_integration
+%    >>> run_sdrplay_integration(...)
+% \end{verbatim}
+% (you will need to replace the \verb|...| with appropriate arguments)
 
 
 
@@ -247,10 +250,16 @@ to \texttt{import} the \texttt{run\_sdrplay\_integration} function from
 \texttt{run\_sdrplay\_integration.py}:\\
 \verb|from run_sdrplay_integration import run_sdrplay_integration|
 
+To get more information about the functions you can type in the terminal:
+   \verb|>>> run_sdrplay_integration?|
+
+
 Load up the software and run the \texttt{bias\_tee\_on} function.
 You can do this within python by running the commands:\\
 \verb|from run_sdrplay_integration import bias_tee_on|\\
 \verb|bias_tee_on()|
+
+The bias tee is only available on Antenna B (Ant B), not Ant A.
 
 
 Verify that the indicator light on the LNA turns on.
@@ -345,7 +354,7 @@ in which we record data at two frequencies separated by more than the expected l
 but less than the receiver bandwidth.  In frequency switching, we integrate for two consecutive
 observations, then take their difference.
 
-Plot \verb|fsw_spectrum| vs \verb|frequency1| for each of the four spectra in a four-panel plot.
+Plot \verb|fsw_spectrum| vs \verb|frequency1| for each of the four spectra in a four-panel plot. \\
 Use \verb|matplotlib.pyplot.subplot(2, 2, ii)| to make this four-panel plot.
 
 Question: How do these spectra differ from the non-frequency-switched spectra?
