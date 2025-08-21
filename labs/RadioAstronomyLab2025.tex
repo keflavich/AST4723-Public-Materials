@@ -188,10 +188,11 @@ the Campus Teaching Observatory (outside).
     \item Observing laptop
     \item Power cord for laptop
     \item USB extension cord
-    \item \[optional\] Battery pack
+    \item (optional) Battery pack
 \end{itemize}
 \begin{figure}[h]
     \centering
+    \label{fig:radiolab_equipment_2025}
     Visual checklist: you should have each of these items, plus the radio telescope.
     \includegraphics[width=0.75\textwidth]{RadioLabPhotos/radiolab_equipment_2025.png}
     %\caption{}
@@ -225,7 +226,7 @@ a problem with your python installation; report it to the instructor.
 
 
 Connect the hardware.
-See Figure \ref{fig:radiolab_equipment_2025} for a visual checklist.
+See Figure \ref{fig:adapter_to_lna_to_cable_to_sdr} for a visual checklist.
 The USB-B cord should be plugged into the computer and the SDR.
 The coax cable should be connected from the SDR Antenna B to the LNA and/or to the antenna (depending on the step below).
 
@@ -259,14 +260,16 @@ You can do this within python by running the commands:\\
 \verb|from run_sdrplay_integration import bias_tee_on|\\
 \verb|bias_tee_on()|
 
-The bias tee is only available on Antenna B (Ant B), not Ant A.
-
 
 Verify that the indicator light on the LNA turns on.
+It should be on for about 1 second.
+The \textbf{bias tee} provides power to the LNA through the coaxial cable.
+It is only available on Antenna B (Ant B), not Ant A.
 If it does not, see the troubleshooting section (\S \ref{sec:troubleshooting}).
 
 \begin{figure}[htp]
     \centering
+    \label{fig:adapter_to_lna_to_cable_to_sdr}
     The LNA should be connected to the SDR via the long coax cable.  The SDR should be plugged in
     to the USB extension cord and into the computer USB port.\\
     \includegraphics[width=0.75\textwidth]{RadioLabPhotos/adapter_to_lna_to_cable_to_sdr.jpg}
